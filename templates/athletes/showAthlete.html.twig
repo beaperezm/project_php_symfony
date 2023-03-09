@@ -1,0 +1,39 @@
+{# Vamos a heredar de la plantilla base --> se pone extends <ruta contando a partir del directorio template> #}
+{% extends "athletes/baseAthlete.html.twig" %}
+
+{# añadimos lo que está definido en baseAthlete - el block container - #}
+    {% block container %}
+
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center"><h2>Se encuentra en el puesto nº   {{ athlete.code }} de la lista: </h2>                    
+                    <h2> {{ athlete.name }} </h2></div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <img width="100%" src="{{ athlete.img }}">
+                    </div>
+                <div class="col">
+                        <div class="row">
+                            <div class="col">{{ athlete.birthDate }}</div>
+                        </div>
+                 {# <div class="col">
+                        <div class="row">
+                            <div class="col">{{ athlete.titlesWon }}</div>
+                        </div> #}
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">{{ athlete.description }}</div>
+                        </div>
+                        <div class="row">
+                            <ul>
+                            {% for title in athlete.titlesName %}
+                               <li>{{ title.titles }}</li>
+                               {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    {% endblock %}
