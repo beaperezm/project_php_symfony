@@ -1,0 +1,104 @@
+body {
+    background-color: lightgray;
+}
+
+/* .navbar-toggler-icon */
+
+.card {
+    box-shadow: 2px 2px 2px 2px rgb(109, 109, 109); 
+    border: 6px solid lightgrey;
+    display: flex;
+    justify-content: center;
+}
+.card-body {
+    background-color:rgb(180, 180, 180);
+    font-weight: 700;
+    text-align: center;
+ }
+
+ .card-title {
+    font-weight: bolder;
+}
+
+.row {
+    margin-left: 138px;
+}
+
+.mb-4, .my-4 {
+    margin-bottom: 1.5rem!important;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.text {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.form-control {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10%;
+    border: 1px solid #73b9ff;
+}
+
+/* label {
+    margin-left: 10%;
+
+} */
+
+.dropzone-container {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.bg-dark {
+    margin-bottom: 5%;
+}
+
+input[type=checkbox], input[type=radio] {
+    margin-left: 6%;
+}
+
+.col-form-label {
+    margin-left: 10%;
+    font-weight: 700;
+}
+
+.btn-primary {
+    margin-left: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-tertiary {
+    cursor: pointer;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.message {
+    font-size: 20px;
+    color: darkred;
+    text-align: center;
+    font-weight: 700;
+}
+
+.label {
+    display: none;
+}
+
+
+
+.font-weight-normal {
+    font-weight: 600!important;
+    text-align: center
+}
+
+

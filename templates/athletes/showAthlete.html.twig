@@ -1,7 +1,5 @@
-{# Vamos a heredar de la plantilla base --> se pone extends <ruta contando a partir del directorio template> #}
 {% extends "athletes/baseAthlete.html.twig" %}
 
-{# añadimos lo que está definido en baseAthlete - el block container - #}
     {% block container %}
 
             <div class="container">
@@ -17,10 +15,6 @@
                         <div class="row">
                             <div class="col">{{ athlete.birthDate }}</div>
                         </div>
-                 {# <div class="col">
-                        <div class="row">
-                            <div class="col">{{ athlete.titlesWon }}</div>
-                        </div> #}
                     <div class="col">
                         <div class="row">
                             <div class="col">{{ athlete.description }}</div>

@@ -6,12 +6,19 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <title>{% block title %}The best Spanish athletes!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+        {# SI QUIERO USAR CSS #}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {# SI QUIERO USAR JS #}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </head>
     <body>
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="#"><img height="35px" src="{# LOGO #}"></a>
                 <button 
                     class="navbar-toggler" 
                     type="button" 
@@ -28,12 +35,20 @@
                         <a class="nav-link active" href="#">Inicio 
                         <span class="sr-only">(current)</span></a>
                         <a class="nav-link" href="{{ path('listAthlete') }}">Listar Atleta</a>
-                        <a class="nav-link" href="#">Crear Atleta</a>
+                        <a class="nav-link" href="{{ path('insertAthlete') }}">Crear Atleta</a>
+                        <a class="nav-link" href="{{ path('createUser') }}">Registrarse</a>
+                        <a class="nav-link" href="{{ path('createAdmin') }}">Registrarse Role</a>
+                        <a class="nav-link" href="{{ path(app.user ? 'app_logout' : 'app_login') }}">{{app.user ? 'Salir' : 'Login' }}</a>
+                        {% if is_granted('ROLE_USER') %}
+                        <p class="btn btn-secondary" >Nombre: {{ app.user.name }}</p>
+                        {% endif %}
+
+
                     </div>
                 </div>
             </nav>
             
-            {# aquí definimos un bloque que se va a llamar container #}
+            {# Definiendo un bloque #}
             {% block container %} {% endblock %}
         </div>
     </body>

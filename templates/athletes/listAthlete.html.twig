@@ -2,9 +2,14 @@
 
 {% block container %}
 
-<h2>Listado de Atletas</h2>
+{% for message in app.flashes('success') %}
+<p class="message">{{ message }}</p>
+{% endfor %}
+
+{{ form(searchForm) }}
+<h2 class="text">Listado de Atletas</h2>
 <div class="row row-cols-1 row-cols-md-2">
-{# BUCLE para iterar por los distintos atletas que he creado en el AthleteController #}
+{# Iterando por los distintos atletas #}
 {% for athlete in athletes %}
   <div class="col mb-4">
     <div class="card" style="width: 18rem">
@@ -12,15 +17,18 @@
       <div class="card-body">
         <h5 class="card-title">{{ athlete.name }}</h5>
         <p class="card-text">{{ athlete.sport }}</p>
-        {# al ser una ruta variable path recibe: el name puesto en AthleteController y entre las llaves {los argumentos variables que tiene nuestra ruta, como si fuese un JSON clave: valor} #}
-        <a href="{{ path('showAthlete', {id: athlete.id}) }}" class="btn btn-primary">Más Info</a>
+        <a href="{{ path('showAthlete', {id: athlete.id}) }}" class="btn btn-tertiary">Más Info</a>
+        <a href="{{ path('editAthlete', {id: athlete.id}) }}" class="btn btn-tertiary">Editar</a>
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('removeAthlete', {id: athlete.id}) }}" class="btn btn-tertiary">Borrar</a>
+        {% endif %}
+        
       </div>
     </div>
   </div>
-
-{# CIERRE del BUCLE #}
+  
   {% endfor %}
 </div>
 
-{# CIERRE del BLOQUE #}
 {% endblock %}
