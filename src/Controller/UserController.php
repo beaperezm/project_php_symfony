@@ -19,7 +19,7 @@ class UserController extends AbstractController
         if($form -> isSubmitted() && $form -> isValid()) {
             $user = $form -> getData();
             $password = $user -> getPassword();
-           //Encriptando la contraseña
+           //Encripting the password
             $passwordBCrypt = $hasher -> hashPassword($user, $password);
             $user -> setPassword($passwordBCrypt);
             $doctrine -> persist($user);

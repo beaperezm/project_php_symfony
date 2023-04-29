@@ -1,6 +1,6 @@
 <?php
 
-//dónde se encuentra
+//Where it´s located
 namespace App\Controller;
 
 
@@ -19,12 +19,12 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class AthleteController extends AbstractController {
 
 
-    //Creando la ruta de la url con id variable
+    //Creating URL path with variable id
     #[Route('/athlete/{id}', name: 'showAthlete')]
     //Creando la función para mostrar a cada atleta
     public function showAthlete(EntityManagerInterface $doctrine, $id) {
 
-        //Creando el array del modelo de cada atleta con su clave => valor
+        //Creating the array of each athlete´s model with its key => value
         $repository = $doctrine -> getRepository(Athlete::class);
         $athlete = $repository->find($id);
 
@@ -34,7 +34,7 @@ class AthleteController extends AbstractController {
             );
         }
 
-        //Devolviendo con el método render al atleta para que lo muestre en pantalla
+        //Returning with the render method to the athlete to be displayed on the screen
         return $this->render('athletes/showAthlete.html.twig', ['athlete'=>$athlete]);
 
     }
@@ -45,14 +45,14 @@ class AthleteController extends AbstractController {
         $form = $this -> createForm(SearcherType::class);
         $form -> handleRequest($request);
         if($form -> isSubmitted() && $form -> isValid()) {
-            //Creando el search
+            //Creating the search input
             $athlete = $form -> get('atleta') -> getData();
             return $this -> redirectToRoute('showAthlete', ['id' => $athlete -> getId()]);
         }
 
-        //Athlete::class ---> listado de atletas que tienen que cargarse
+        //Athlete::class ---> list of athletes to be charged
         $repository = $doctrine -> getRepository(Athlete::class);
-        //Para encontrar a todos los atletas
+        //To find all athletes
         $athletes = $repository->findAll();
 
     
@@ -63,7 +63,7 @@ class AthleteController extends AbstractController {
     #[Route('/new/athlete')]
     public function newAthlete(EntityManagerInterface $doctrine){
 
-        //Creando objetos del tipo athlete
+        //Creating athlete type objects
         $athlete1 = new Athlete();
         $athlete1-> setCode(15);
         $athlete1-> setName('');
@@ -72,49 +72,49 @@ class AthleteController extends AbstractController {
         $athlete1-> setImg('');
         $athlete1-> setBirthDate('');
     
-        //Creando objetos del tipo titleWon
+        //Creando titleWon type objects
         $titleWon1 = new TitlesWon();
         $titleWon1 -> setTitles('');
         
         //Relacion atletas y titulos
         $athlete1 -> addTitlesName($titleWon1);
 
-        //Avisando para que añada estos datos a la DB
+        //Advising to add this data to the DB
         $doctrine->persist($athlete1);
         $doctrine->persist($titleWon1);
    
 
-        //Insertando los datos en la DB
+        //Inserting the data into the DB
         $doctrine->flush();
 
         return new Response("Atletas y títulos insertados correctamente");
     }
 
     #[Route('/insert/athlete', name: 'insertAthlete')]
-    //Request es el componente de symfony para manejar peticiones
+    //Handling requests with "Request" (from symfony)
     public function insertAthlete(Request $request, EntityManagerInterface $doctrine, AthleteManager $manager) {
         //Seleccionando form --> con el que vamos a trabajar 
         $form = $this-> createForm(AthleteType::class);
-        //Viendo si el usuario ha rellenado los datos y le ha dado a enviar
+        //Seeing if the user has filled in the data and clicker on send
         $form -> handleRequest($request);
         if($form -> isSubmitted() && $form -> isValid()) {
-            //Devolviendo un objeto del tipo atleta con los datos rellenos por el user
+            //Returning an object of type athlete with the data filled in by the user
             $athlete = $form -> getData();
             $athleteImg = $form -> get('imagenAtleta') -> getData();
             if($athleteImg) {
-            //Guardando la respuesta del método load
+            //Saving the response of the load method
                 $athleImage = $manager -> load($athleteImg, $this -> getParameter('kernel.project_dir').'/public/assets/image');
                 $athlete -> setImg("/assets/image/$athleImage");
             }
             $doctrine -> persist($athlete);
             $doctrine -> flush();
-            //Añadiendo mensaje
+            //Adding message
             $this -> addFlash('success', 'Atleta insertado correctamente');
         
             return $this -> redirectToRoute('listAthlete');
         }
 
-        //Haciendo el "renderForm"
+        //Making the "renderForm"
         return $this-> render('athletes/createAthlete.html.twig', ['athleteForm' => $form -> createView()]);
     }
 
@@ -140,10 +140,10 @@ class AthleteController extends AbstractController {
         return $this-> render('athletes/createAthlete.html.twig', ['athleteForm' => $form -> createView()]);
     }
 
-    #[IsGranted('ROLE_ADMIN')] //solo la gente con role_admin va a poder borrar
+    #[IsGranted('ROLE_ADMIN')] //only people with role_admin are going to be able to delete
     #[Route('/remove/athlete/{id}', name: 'removeAthlete')]
     public function removeAthlete(EntityManagerInterface $doctrine, $id) {
-        //Haciendo consulta a DB para saber el atleta que queremos borrar
+        //Consulting DB to find out wich athlete we want to delete
         $repository = $doctrine -> getRepository(Athlete::class);
         $athlete = $repository->find($id);
         $doctrine -> remove($athlete);

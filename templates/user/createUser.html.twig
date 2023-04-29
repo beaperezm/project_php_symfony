@@ -2,7 +2,7 @@
 
 {% block container %}
 
-{# form es una función de twig - recibe como argumento el formulario que queremos pintar - creado dentro de la función insertAthlete en el return #}
+{# form is a twig function - it receives as argument the form we want to paint - created inside the insertAthlete function in the return #}
 {{ form(userForm) }}
 
 {% for message in app.flashes('success') %}
@@ -24,5 +24,5 @@
 </div>
 {% endfor %}
 
-{# CIERRE del BLOQUE #}
+{# block closure #}
 {% endblock %}

@@ -16,7 +16,7 @@ use Symfony\UX\Dropzone\Form\DropzoneType;
 class AthleteType extends AbstractType
 {
 
-    //Creando el formulario para añadir atletas
+    //Creating the form to add athletes
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

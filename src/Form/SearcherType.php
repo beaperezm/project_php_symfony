@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class SearcherType extends AbstractType
 {
 
-    //Creando el formulario de búsqueda por nombre
+    //Creating the search form by name
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class UserType extends AbstractType
 {
 
-    //Creando el formulario de registro
+    //Creating the registration form
     
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

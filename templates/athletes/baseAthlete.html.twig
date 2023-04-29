@@ -1,4 +1,4 @@
-{# Plantilla base con todo lo común de la aplicación #}
+{# Basic template with all the common features of the app #}
 
 <!DOCTYPE html>
 <html>
@@ -7,11 +7,11 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <title>{% block title %}The best Spanish athletes!{% endblock %}</title>
         {% block stylesheets %}
-        {# SI QUIERO USAR CSS #}
+        {# if I wanto to use CSS #}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
-        {# SI QUIERO USAR JS #}
+        {# if I wanto to use JS #}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
@@ -48,7 +48,7 @@
                 </div>
             </nav>
             
-            {# Definiendo un bloque #}
+            {# Defining a block #}
             {% block container %} {% endblock %}
         </div>
     </body>
