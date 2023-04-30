@@ -72,11 +72,11 @@ class AthleteController extends AbstractController {
         $athlete1-> setImg('');
         $athlete1-> setBirthDate('');
     
-        //Creando titleWon type objects
+        //Creating titleWon type objects
         $titleWon1 = new TitlesWon();
         $titleWon1 -> setTitles('');
         
-        //Relacion atletas y titulos
+        //List of athletes and titles
         $athlete1 -> addTitlesName($titleWon1);
 
         //Advising to add this data to the DB
@@ -93,7 +93,7 @@ class AthleteController extends AbstractController {
     #[Route('/insert/athlete', name: 'insertAthlete')]
     //Handling requests with "Request" (from symfony)
     public function insertAthlete(Request $request, EntityManagerInterface $doctrine, AthleteManager $manager) {
-        //Seleccionando form --> con el que vamos a trabajar 
+        //Selecting form --> with which we are going to work 
         $form = $this-> createForm(AthleteType::class);
         //Seeing if the user has filled in the data and clicker on send
         $form -> handleRequest($request);

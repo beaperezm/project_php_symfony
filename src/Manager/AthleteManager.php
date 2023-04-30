@@ -1,6 +1,6 @@
 <?php
 
-//Creando the service for images
+//Creating the service for images
 
 namespace App\Manager;
 
